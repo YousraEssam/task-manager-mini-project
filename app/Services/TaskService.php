@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Task;
 use App\Repositories\TaskRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -25,5 +26,16 @@ class TaskService
     public function getTaskList(): LengthAwarePaginator
     {
         return $this->taskRepo->getTaskList();
+    }
+
+    /**
+     * Create new task.
+     *
+     * @param array $data
+     * @return Task|null
+     */
+    public function createNewTask(array $data): ?Task
+    {
+        return $this->taskRepo->createNewTask($data);
     }
 }

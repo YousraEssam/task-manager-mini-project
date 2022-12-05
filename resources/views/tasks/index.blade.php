@@ -9,6 +9,7 @@
     <div class="container">
         <div class="text-center">
             <h1>Tasks List</h1>
+            <a class="btn btn-primary" href="{{ route('tasks.create') }}">Create New Task</a>
         </div>
 
         <div class="row">

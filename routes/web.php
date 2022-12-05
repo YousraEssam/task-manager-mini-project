@@ -21,4 +21,6 @@ Route::get('/', function () {
 
 Route::controller(TaskController::class)->group(function () {
     Route::get('/tasks', 'index')->name('tasks.index');
+    Route::get('/tasks/create', 'create')->name('tasks.create');
+    Route::post('/tasks', 'store')->name('tasks.store');
 });
