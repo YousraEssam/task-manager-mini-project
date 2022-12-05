@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Repositories\TaskRepository;
 use App\Services\TaskService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\QueryException;
 use PDOException;
 use Tests\TestCase;
@@ -121,10 +122,6 @@ class TaskServiceTest extends TestCase
 
     public function test_that_get_statistics()
     {
-        // Task::factory(2)->create([
-        //     'assigned_by_id' => $this->adminUser->id,
-        //     'assigned_to_id' => $this->user->id
-        // ]);
         $this->createTask(2);
         $tasks = $this->taskService->getStatistics();
 
@@ -148,7 +145,11 @@ class TaskServiceTest extends TestCase
         return User::factory()->create(['is_admin' => $isAdmin]);
     }
 
-    private function createTask(int $count = 1): ?Task
+    /**
+     * @param int $count
+     * @return Collection
+     */
+    private function createTask(int $count = 1): Collection
     {
         return Task::factory($count)->create([
             'assigned_by_id' => $this->adminUser->id,
