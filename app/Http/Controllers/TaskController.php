@@ -65,4 +65,16 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index')->with('success','Task #'.$task->id.' created successfully.');
     }
+
+    /**
+     * Display statistics of most assigned tasks.
+     *
+     * @return View
+     */
+    public function getStatistics(): View
+    {
+        $topTasks = $this->taskService->getStatistics();
+
+        return view('tasks.statistics', compact('topTasks'));
+    }
 }
